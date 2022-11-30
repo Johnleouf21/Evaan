@@ -1,0 +1,28 @@
+{
+  "name": "evaan-lottery",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.5.1",
+    "@openzeppelin/contracts": "^4.8.0",
+    "axios": "^1.2.0",
+    "bootstrap": "^5.2.3",
+    "dotenv": "^16.0.3",
+    "eslint": "8.28.0",
+    "eslint-config-next": "13.0.5",
+    "next": "13.0.5",
+    "react": "18.2.0",
+    "react-bootstrap": "^2.6.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.2"
+  }
+}

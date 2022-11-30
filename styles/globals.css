@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  font-family: Markup;
+  background-color: var(--background);
+  
+}
+
+@font-face {
+  font-family: MarkUp;
+  src: url('/Assets/Fonts/Markup\ W00\ Regular.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
