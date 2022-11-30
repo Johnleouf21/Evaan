@@ -32,6 +32,9 @@ const ClaimNFT = () => {
                 const balanceOfUnique = await contract.balanceOf(address, 1);
                 const balanceOfRare = await contract.balanceOf(address, 2);
                 const balanceOfLimited = await contract.balanceOf(address, 3);
+                const supplyLeftUnique = await contract.getQuantity(1);
+                const supplyLeftRare = await contract.getQuantity(2);
+                const supplyLeftLimited = await contract.getQuantity(3);
                 console.log(priceSale)
                 console.log(balanceOfUnique)
                 console.log(balanceOfRare)
@@ -41,6 +44,9 @@ const ClaimNFT = () => {
                   "balanceOfUnique": String(balanceOfUnique),
                   "balanceOfRare": String(balanceOfRare),
                   "balanceOfLimited": String(balanceOfLimited),
+                  "supplyLeftUnique": String(supplyLeftUnique),
+                  "supplyLeftRare": String(supplyLeftRare),
+                  "supplyLeftLimited": String(supplyLeftLimited),
                 }
                 setData(object);
             }
@@ -52,7 +58,7 @@ const ClaimNFT = () => {
 
     async function pickWinnerUnique() {
         if (typeof window.ethereum !== 'undefined') {
-            const contract = new ethers.Contract(NFTAddress, NFTABI.abi, provider);
+            const contract = new ethers.Contract(NFTAddress, NFTABI.abi, provider.getSigner());
             try {
                 var tx = await contract.pickWinner(1)
                 await tx.wait()
@@ -65,7 +71,7 @@ const ClaimNFT = () => {
 
     async function pickWinnerRare() {
         if (typeof window.ethereum !== 'undefined') {
-            const contract = new ethers.Contract(NFTAddress, NFTABI.abi, provider);
+            const contract = new ethers.Contract(NFTAddress, NFTABI.abi, provider.getSigner());
             try {
                 var tx = await contract.pickWinner(2)
                 await tx.wait()
@@ -78,7 +84,7 @@ const ClaimNFT = () => {
 
     async function pickWinnerLimited() {
         if (typeof window.ethereum !== 'undefined') {
-            const contract = new ethers.Contract(NFTAddress, NFTABI.abi, provider);
+            const contract = new ethers.Contract(NFTAddress, NFTABI.abi, provider.getSigner());
             try {
                 var tx = await contract.pickWinner(3)
                 await tx.wait()
@@ -111,9 +117,9 @@ const ClaimNFT = () => {
                         </div>
                     </div>
                 </div>
-                <button onClick={pickWinnerUnique} className='mintBtn'>Pick a Winner for the UNIQUE!</button>
-                <button onClick={pickWinnerRare} className='mintBtn'>Pick a Winner for the RARE!</button>
-                <button onClick={pickWinnerLimited} className='mintBtn'>Pick a Winner for the LIMITED!</button>   
+                <button onClick={pickWinnerUnique} className='mintBtn'>Pick a Winner for the UNIQUE! ({data.supplyLeftUnique} restant)</button>
+                <button onClick={pickWinnerRare} className='mintBtn'>Pick a Winner for the RARE! ({data.supplyLeftRare} restant)</button>
+                <button onClick={pickWinnerLimited} className='mintBtn'>Pick a Winner for the LIMITED! ({data.supplyLeftLimited} restant)</button>   
             </div> 
         </>
         );
